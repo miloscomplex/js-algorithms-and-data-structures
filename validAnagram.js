@@ -1,3 +1,6 @@
+// using frequencyCounterPattern
+// it is in O(n)
+
 function validAnagram(str1, str2){
   // add whatever parameters you deem necessary - good luck!
   if (str1.length !== str2.length ) {
@@ -8,7 +11,6 @@ function validAnagram(str1, str2){
 
   for (let val in str1 ) {
       // for strings you need to do strObj[str1[val]]
-
       // if key exists add to it if not create it
       strObj[str1[val]] = (strObj[str1[val]] || 0) + 1;
   }
