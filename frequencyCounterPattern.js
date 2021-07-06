@@ -1,4 +1,5 @@
 // runs in 0(n) since it uses objects and separates loops
+
 function same(arr1, arr2) {
   // just return if the arr lengths are different
   if (arr1.length !== arr2.length) {
@@ -17,9 +18,11 @@ function same(arr1, arr2) {
   }
   // check the two counters against eachother
   for (let key in frequencyCounter1) {
+    // check the key
     if (!(key ** 2 in frequencyCounter2)) {
       return false
     }
+    // check value
     if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
       return false
     }
@@ -28,3 +31,5 @@ function same(arr1, arr2) {
   return true
 
 }
+
+same([1,2,3,2], [9,1,4,4])
