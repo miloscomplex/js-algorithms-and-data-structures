@@ -2,6 +2,7 @@
 // Time Complexity - 0(n)
 // Space Complexity - 0(1)
 // used to iterate through a sorted list/array/string etc
+// key is to use two pointers to move through the array
 
 function sumZero(arr) {
   let left = 0
@@ -17,4 +18,5 @@ function sumZero(arr) {
       left++
     }
   }
+
 }
