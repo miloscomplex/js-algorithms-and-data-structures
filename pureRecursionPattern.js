@@ -16,3 +16,6 @@ function collectOddValues(arr){
 collectOddValues([1,2,3,4,5])
 
 // essentially you push onto the stack [<newArr>].concat(collectOdValues(<arr.slice(1)))
+// use methods like slice, the spread operator, and concast for ARRAYS
+// strings need to be slice, substr, or substring
+// objects should be made a copy via Object.assign, or the spread operator 
