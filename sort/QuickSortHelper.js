@@ -1,4 +1,4 @@
-function pivot(arr, start = 0, end = arr.length + 1) {
+function pivot(arr, start = 0, end = arr.length - 1) {
 
   function swap(array, i, j) {
     var temp = array[i];

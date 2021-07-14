@@ -31,7 +31,7 @@ function mergeSort(arr) {
   let mid = Math.floor(arr.length/2);
   let left = mergeSort(arr.slice(0,mid));
   let right = mergeSort(arr.slice(mid));
-  return merge(left, right);
+  return mergeArrays(left, right);
 }
 
-mergeSort([3,8,20,1,12,28,100])
+mergeSort([12,8,30,1])
