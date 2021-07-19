@@ -61,12 +61,46 @@ class DoublyLinkedList {
 
   unshift(val) {
     let newNode = new Node(val);
-    if (!this.head) return undefined;
-    this.head.prev = newNode;
-    newNode.next = this.head;
-    this.head = newNode;
-    return this;
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+      this.length++;
+      return this;
+    }
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let counter = 0;
+    let curNode = null;
+    if (index <= this.length) {
+      curNode = this.head;
+      while (counter !== index) {
+        curNode = curNode.next
+        counter++;
+      }
+    } else  {
+      count = this.length - 1;
+      curNode = this.tail;
+      while (counter !== index) {
+        curNode = curNode.prev
+        counter--;
+      }
+    }
+    return curNode;
+  }
+
+  set(idx, val) {
+    let node = get(idx);
+    if (node) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
 
 }
