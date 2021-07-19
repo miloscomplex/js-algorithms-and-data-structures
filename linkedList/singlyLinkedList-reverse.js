@@ -10,8 +10,8 @@ function reverse(list) {
   for (let i=0; i < this.length; i++) {
     next = node.next;
     node.next = prev;
-    prev = node; 
+    prev = node;
     node = next;
   }
-
+  return this;
 }
