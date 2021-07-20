@@ -1,6 +1,7 @@
 // LIFO last in first out
 // push / pop is actually unshift / shift
 // to allow for O(1)
+
 class Node {
   constructor(val) {
     this.val = val;
