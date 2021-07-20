@@ -15,7 +15,7 @@ class DoublyLinkedList {
 
   push(val) {
     let node = new Node(val);
-    if (this.length === null) {
+    if (this.length === 0) {
       this.head = node;
       this.tail = node;
     } else {
@@ -25,7 +25,6 @@ class DoublyLinkedList {
     }
       this.length++;
       return this;
-    }
   }
 
   pop() {
@@ -77,7 +76,7 @@ class DoublyLinkedList {
     if (index < 0 || index >= this.length) return null;
     let counter = 0;
     let curNode = null;
-    if (index <= this.length) {
+    if (index <= this.length / 2) {
       curNode = this.head;
       while (counter !== index) {
         curNode = curNode.next
@@ -95,7 +94,7 @@ class DoublyLinkedList {
   }
 
   set(idx, val) {
-    let node = get(idx);
+    let node = this.get(idx);
     if (node !== null) {
       node.val = val;
       return true;
@@ -105,16 +104,35 @@ class DoublyLinkedList {
 
   insert(idx, val) {
     if (idx < 0 || idx > this.length) return false;
-    if (idx === 0) return this.unshift(val);
-    if (idx === this.length) return this.push(val);
+    if (idx === 0) return !!this.unshift(val);
+    if (idx === this.length) return !!this.push(val);
+
     let newNode = new Node(val);
     let prevNode = this.get(idx - 1);
     let nextNode = prevNode.next;
+
     prevNode.next = newNode;
     newNode.prev = prevNode;
     newNode.next = nextNode;
     nextNode.prev = newNode;
+    return length++;
     return true;
+  }
+
+  remove(idx) {
+    if (idx < 0 || idx >= this.length) return undefined;
+    if (idx === 0) return this.shift();
+    if (idx === this.length - 1) return this.pop();
+
+    let removeNode = this.get(idx);
+    removeNode.prev.next = removeNode.next;
+    removeNode.next.prev = removeNode.prev;
+
+    removeNode.next = null;
+    removeNode.prev = null;
+    this.length--;
+
+    return removeNode;
   }
 
 }
