@@ -36,6 +36,14 @@ class HashTable {
     return undefined;
   }
 
+  keys() {
+    
+  }
+
+  values() {
+
+  }
+
 }
 
 let ht = new HashTable(17);
