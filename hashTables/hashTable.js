@@ -37,11 +37,19 @@ class HashTable {
   }
 
   keys() {
-    
+    let keys = [];
+    for (let i=0; i < this.keysMap.length; i++) {
+      keys.push(this.keysMap[i][0]);
+    }
+    return keys;
   }
 
   values() {
-
+    let values = [];
+    for (let i=0; i < this.keysMap.length; i++) {
+      values.push(this.keysMap[i][1]);
+    }
+    return values;
   }
 
 }
