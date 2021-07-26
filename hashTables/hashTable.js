@@ -39,7 +39,13 @@ class HashTable {
   keys() {
     let keys = [];
     for (let i=0; i < this.keysMap.length; i++) {
-      keys.push(this.keysMap[i][0]);
+      if (this.keyMap[i]) {
+        for(let j = 0; j < this.keyMap[i].length; j++) {
+          if(keys.includes(this.keyMap[i][j][1])) {
+              keys.push(this.keysMap[i][0]);
+          }
+        }
+      }
     }
     return keys;
   }
@@ -47,7 +53,13 @@ class HashTable {
   values() {
     let values = [];
     for (let i=0; i < this.keysMap.length; i++) {
-      values.push(this.keysMap[i][1]);
+      if (this.keyMap[i]) {
+        for(let j = 0; j < this.keyMap[i].length; j++) {
+          if(values.includes(this.keyMap[i][j][1])) {
+              values.push(this.keysMap[i][1]);
+          }
+        }
+      }
     }
     return values;
   }
