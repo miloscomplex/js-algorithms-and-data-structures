@@ -53,6 +53,28 @@ class Graph {
     return results;
   }
 
+  depthFirstIterative(start) {
+    const stack = [start];
+    const results = [];
+    const visited = {};
+
+    visited[start] = true;
+
+    while (stack.length) {
+        console.log(stack);
+        let curVertex = stack.pop();
+        results.push(curVertex);
+
+        this.adjacencyList[curVertex].forEach(neighbor => {
+          if (!visited[neighbor]) {
+            visited[neighbor] = true;
+            stack.push(neighbor);
+          }
+        })
+    }
+    return results;
+  }
+
 }
 
 let g = new Graph();
