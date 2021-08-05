@@ -75,6 +75,32 @@ class Graph {
     return results;
   }
 
+  breadthFirst(start) {
+    // first in first out
+    const queue = [start];
+    const results = [];
+    const visited = {};
+    let curVertex;
+
+    visited[start] = true;
+
+    while (queue.length) {
+      console.log(queue);
+      curVertex = queue.shift();
+      results.push(curVertex);
+
+      this.adjacencyList[curVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+
+    }
+
+    return results;
+  }
+
 }
 
 let g = new Graph();
