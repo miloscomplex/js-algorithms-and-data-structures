@@ -1,3 +1,89 @@
+class Node {
+  constructor(value, priority) {
+    this.val = value;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  enqueue(value, priority) {
+    if (value === null || priority === null) return undefined;
+    let node = new Node(value, priority);
+    this.values.push(node);
+    this.bubbleUp();
+    return this.values;
+  }
+
+  bubbleUp() {
+    let index = this.values.length - 1;
+    const element = this.values[index];
+
+    while (index > 0) {
+      let parentIdx = Math.floor((index - 1)/2);
+      let parent = this.values[parentIdx]
+      if (element.priority >= parent.priority) break;
+      this.values[parentIdx] = element;
+      this.values[index] = parent;
+      if (parentIdx === 0) break;
+      index = parentIdx;
+    }
+  }
+
+  dequeue() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.bubbleDown();
+    }
+    return min;
+  }
+
+  bubbleDown() {
+    let idx = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+
+    while (idx <= this.values.length) {
+      let leftChildIdx = idx * 2 + 1;
+      let rightChildIdx = idx * 2 + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      // check if inbounds
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx]
+        if (leftChild.priority < element.priority) {
+          swap = leftChildIdx;
+        }
+      }
+
+      // check if inbounds
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+        if (
+          // check to only swap with largest value
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+
+      if (swap === null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
+      idx = swap;
+      }
+  }
+
+
+}
+
 class WeightedGraph {
  constructor() {
    this.adjacencyList = {};
@@ -36,8 +122,8 @@ class WeightedGraph {
    while (nodes.values.length) {
      smallest = nodes.dequeue().val;
      if (smallest === finish) {
-       // console.log(distances)
-       // console.log(previous)
+       //console.log(distances)
+       //console.log(previous)
        // we are done so build path to return
        while(previous[smallest]) {
          path.push(smallest);
@@ -50,7 +136,7 @@ class WeightedGraph {
        for( let neighbor in this.adjacencyList[smallest]) {
          // find neighbor node
          let nextNode = this.adjacencyList[smallest][neighbor];
-         // console.log(nextNode);
+         //console.log(nextNode);
          // calculate distance to neighborNode
          let candidate = distances[smallest] + nextNode.weight;
          let nextNeighbor = nextNode.node
@@ -68,27 +154,6 @@ class WeightedGraph {
    }
    return path.concat(smallest).reverse();
  }
-
-}
-
-
-class PriorityQueue {
-  constructor() {
-    this.values = [];
-  }
-
-  enqueue(val, priority) {
-    this.values.push({val, priority});
-    this.sort();
-  };
-
-  dequeue() {
-    return this.values.shift();
-  }
-
-  sort() {
-    this.values.sort((a,b) => a.priority - b.priority);
-  };
 
 }
 
