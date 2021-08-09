@@ -66,6 +66,7 @@ class WeightedGraph {
        }
      }
    }
+   // easy way to add smallest to the start of array 
    return path.concat(smallest).reverse();
  }
 
@@ -108,7 +109,6 @@ graph.addEdge("C","F", 4);
 graph.addEdge("D","E", 3);
 graph.addEdge("D","F", 1);
 graph.addEdge("E","F", 1);
-
 
 graph.Dijkstra("A", "E");
 
